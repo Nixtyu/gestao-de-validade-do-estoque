@@ -22,7 +22,7 @@ Como estudante de Engenharia de Software, este projeto foca em:
 - Linguagem: [A definir, ex: Python ou Java]
 - Documentação: Markdown e Ferramentas UML.
 
-📋 Levantamento de Requisitos
+## 📋 Levantamento de Requisitos
 1. Requisitos Funcionais (O que o sistema faz)
 RF01: O sistema deve permitir o cadastro de produtos (Nome, Código de Barras, Setor).
 
