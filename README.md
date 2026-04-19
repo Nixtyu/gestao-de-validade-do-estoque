@@ -21,3 +21,11 @@ Como estudante de Engenharia de Software, este projeto foca em:
 ## 🛠️ Tecnologias
 - Linguagem: [A definir, ex: Python ou Java]
 - Documentação: Markdown e Ferramentas UML.
+
+## 📋 Requisitos Funcionais
+RF01: O sistema deve permitir o cadastro de produtos informando nome, lote e data de validade.
+
+RF02: O sistema deve emitir um alerta visual para produtos com vencimento inferior a 7 dias.
+
+## 📊 Regra de Negócio
+Devido ao alto volume de itens, o sistema deve priorizar a exibição dos itens com data de validade mais próxima (Lógica PEPS/FIFO).
