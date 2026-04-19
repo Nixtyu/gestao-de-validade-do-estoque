@@ -32,7 +32,7 @@ RF03: O sistema deve gerar um alerta visual (cores diferentes) para produtos que
 
 RF04: O sistema deve permitir a consulta de produtos por setor (ex: Mercearia, Frios, Higiene).
 
-2. Requisitos Não Funcionais
+2. Requisitos Não Funcionais 
 RNF01: O sistema deve ser capaz de processar uma base de dados com milhares de itens sem lentidão.
 
 RNF02: A interface deve ser simples e objetiva para facilitar o uso durante a reposição no corredor.
