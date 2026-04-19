@@ -23,7 +23,7 @@ Como estudante de Engenharia de Software, este projeto foca em:
 - Documentação: Markdown e Ferramentas UML.
 
 ## 📋 Levantamento de Requisitos
-1. Requisitos Funcionais (O que o sistema faz)
+1. Requisitos Funcionais
 RF01: O sistema deve permitir o cadastro de produtos (Nome, Código de Barras, Setor).
 
 RF02: O sistema deve registrar a data de validade e o lote de cada item.
@@ -32,7 +32,7 @@ RF03: O sistema deve gerar um alerta visual (cores diferentes) para produtos que
 
 RF04: O sistema deve permitir a consulta de produtos por setor (ex: Mercearia, Frios, Higiene).
 
-2. Requisitos Não Funcionais (Qualidades do sistema)
+2. Requisitos Não Funcionais
 RNF01: O sistema deve ser capaz de processar uma base de dados com milhares de itens sem lentidão.
 
 RNF02: A interface deve ser simples e objetiva para facilitar o uso durante a reposição no corredor.
