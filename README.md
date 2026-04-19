@@ -43,3 +43,6 @@ RNF03: O sistema deve garantir que os dados não sejam perdidos caso a conexão 
 ## 📊 Regra de Negócio
 Devido ao alto volume de itens, o sistema deve priorizar a exibição dos itens com data de validade mais próxima (Lógica PEPS/FIFO).
 ![gestao-de-validade-do-estoque](sistema-validade.png)
+
+## Próximos Passos (Roadmap)
+-Implementar leitura de código de barras via câmera.
