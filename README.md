@@ -29,4 +29,4 @@ RF02: O sistema deve emitir um alerta visual para produtos com vencimento inferi
 
 ## 📊 Regra de Negócio
 Devido ao alto volume de itens, o sistema deve priorizar a exibição dos itens com data de validade mais próxima (Lógica PEPS/FIFO).
-![gestao-de-validade-do-estoque](sistema validade.drawio.png)
+![gestao-de-validade-do-estoque](sistema-validade.drawio.png)
