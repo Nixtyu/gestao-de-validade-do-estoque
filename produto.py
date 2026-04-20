@@ -15,11 +15,9 @@ class Produto:
 # Simulação:
 estoque_mercearia = [
     # Repare: Mesmo produto, mas LOTES e VALIDADES diferentes
-    Produto("Chocolate Barra 90g", "10/05/2026", "LOTE-A1", "Chocolates"),
-    Produto("Chocolate Barra 90g", "20/06/2026", "LOTE-B2", "Chocolates"),
-    
-    Produto("Cereal Matinal 500g", "15/05/2026", "L22", "Matinal"),
-    Produto("Granola Light", "19/04/2026", "G90", "Produtos Light")
+    Produto("Ovo maltine 190g", "01/05/2026", "LOTE-A1", "Matinal"),
+    Produto("Nesquik", "01/06/2026", "L22", "Matinal"),
+    Produto("Sucrilos Kellogs Power pops", "23/06/2026", "G90", "Matinal")
 ]
 
 print(f"--- RELATÓRIO SETOR: MERCEARIA ---")
