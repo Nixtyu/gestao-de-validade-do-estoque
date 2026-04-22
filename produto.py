@@ -4,7 +4,7 @@ class Produto:
     def __init__(self, nome, data_validade, lote, sub_setor):
         self.nome = nome    
         self.data_validade = datetime.strptime(data_validade, '%d/%m/%Y')
-        self.lote = lote  # Agora o sistema diferencia o lote!
+        self.lote = lote  
         self.sub_setor = sub_setor
 
     def dias_para_vencer(self):
@@ -13,11 +13,10 @@ class Produto:
         return diferenca.days
 
 estoque_mercearia = [
-    # Repare: Mesmo produto, mas LOTES e VALIDADES diferentes
     Produto("Ovo maltine 190g", "01/05/2026", "LOTE-A1", "Matinal"),
     Produto("Nesquik", "01/06/2026", "L22", "Matinal"),
-    Produto("Sucrilos Kellogs Power pops", "23/06/2026", "G90", "Matinal")
-    Produto("Nestle Snow 620g", "27/07/2026", "Lote 1", "Matinal")
+    Produto("Sucrilos Kellogs Power pops", "23/06/2026", "G90", "Matinal"), # Tinha uma vírgula faltando aqui
+    Produto("Nestle Snow 620g", "27/07/2026", "Lote 1", "Matinal"), # Tinha uma vírgula faltando aqui
     
     # Quatá
     Produto("Quata", "08/05/2026", "Lote 1", "Laticínios/Matinal"),
@@ -59,26 +58,16 @@ estoque_mercearia = [
     Produto("Torrada Adria Light", "15/05/2026", "Lote Único", "Produtos Light")
 ]
 
-print(f"--- RELATÓRIO SETOR: MERCEARIA ---")
-
-for p in estoque_mercearia:
-    prazo = p.dias_para_vencer()
-    # Usando o lote para identificar exatamente qual caixa precisa sair primeiro
-    print(f"Produto: {p.nome} | Lote: {p.lote} | Vence em: {prazo} dias.")
-    # Função para ordenar o estoque (Primeiro que Vence, Primeiro que Sai)
-# O Python vai olhar a data_validade de cada um e colocar o menor prazo no topo
+# Ordenando o estoque
 estoque_ordenado = sorted(estoque_mercearia, key=lambda x: x.data_validade)
 
 print("\n--- ROTEIRO DE REPOSIÇÃO (SISTEMA PVPS) ---")
 for p in estoque_ordenado:
     prazo = p.dias_para_vencer()
-    if prazo <= 7:
-        aviso = "⚠️ PUXAR PARA FRENTE AGORA!"
-    else:
-        aviso = "✅ OK"
-        
+    aviso = "⚠️ PUXAR PARA FRENTE AGORA!" if prazo <= 7 else "✅ OK"
     print(f"{aviso} | {p.nome} (Lote: {p.lote}) - Faltam {prazo} dias")
-    # --- FUNÇÃO DE FILTRO ---
+
+# --- FUNÇÃO DE FILTRO ---
 def filtrar_por_setor(lista_produtos, setor_escolhido):
     print(f"\n--- FILTRANDO APENAS: {setor_escolhido.upper()} ---")
     encontrou = False
@@ -87,9 +76,26 @@ def filtrar_por_setor(lista_produtos, setor_escolhido):
             prazo = p.dias_para_vencer()
             print(f"[{p.lote}] {p.nome} - Vence em {prazo} dias")
             encontrou = True
-    
     if not encontrou:
         print("Nenhum produto encontrado neste setor.")
 
-# Testando o filtro:
-filtrar_por_setor(estoque_organizado, "Chocolates")
+# --- FUNÇÃO DE FILTRO DE URGÊNCIA (SÓ O QUE ESTÁ CRÍTICO) ---
+def mostrar_vencimentos_criticos(lista_produtos):
+    print("\n--- 🚨 PRODUTOS COM VENCIMENTO CRÍTICO (ATÉ 7 DIAS) ---")
+    encontrou_critico = False
+    
+    for p in lista_produtos:
+        prazo = p.dias_para_vencer()
+        if prazo <= 7:
+            # Exibe o produto com um alerta visual
+            print(f"URGENTE: {p.nome} | Lote: {p.lote} | Setor: {p.sub_setor} | Faltam {prazo} dias")
+            encontrou_critico = True
+            
+    if not encontrou_critico:
+        print("Tudo sob controle! Nenhum produto vencendo nos próximos 7 dias.")
+
+# Testando os dois filtros agora:
+filtrar_por_setor(estoque_ordenado, "Matinal")
+mostrar_vencimentos_criticos(estoque_ordenado)
+filtrar_por_setor(estoque_ordenado, "Chocolates")
+filtrar_por_setor(estoque_ordenado, "Mercearia")
