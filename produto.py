@@ -17,7 +17,8 @@ estoque_mercearia = [
     Produto("Ovo maltine 190g", "01/05/2026", "LOTE-A1", "Matinal"),
     Produto("Nesquik", "01/06/2026", "L22", "Matinal"),
     Produto("Sucrilos Kellogs Power pops", "23/06/2026", "G90", "Matinal")
-    Produto("nestle snow 620g", "27/07/2026", "lote 1", "Matinal")
+    Produto("Nestle Snow 620g", "27/07/2026", "Lote 1", "Matinal")
+    
     # Quatá
     Produto("Quata", "08/05/2026", "Lote 1", "Laticínios/Matinal"),
     Produto("Quata", "11/05/2026", "Lote 2", "Laticínios/Matinal"),
