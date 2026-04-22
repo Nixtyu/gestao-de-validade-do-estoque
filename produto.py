@@ -2,7 +2,7 @@ from datetime import datetime
 
 class Produto:
     def __init__(self, nome, data_validade, lote, sub_setor):
-        self.nome = nome
+        self.nome = nome    
         self.data_validade = datetime.strptime(data_validade, '%d/%m/%Y')
         self.lote = lote  # Agora o sistema diferencia o lote!
         self.sub_setor = sub_setor
@@ -78,3 +78,18 @@ for p in estoque_ordenado:
         aviso = "✅ OK"
         
     print(f"{aviso} | {p.nome} (Lote: {p.lote}) - Faltam {prazo} dias")
+    # --- FUNÇÃO DE FILTRO ---
+def filtrar_por_setor(lista_produtos, setor_escolhido):
+    print(f"\n--- FILTRANDO APENAS: {setor_escolhido.upper()} ---")
+    encontrou = False
+    for p in lista_produtos:
+        if p.sub_setor.lower() == setor_escolhido.lower():
+            prazo = p.dias_para_vencer()
+            print(f"[{p.lote}] {p.nome} - Vence em {prazo} dias")
+            encontrou = True
+    
+    if not encontrou:
+        print("Nenhum produto encontrado neste setor.")
+
+# Testando o filtro:
+filtrar_por_setor(estoque_organizado, "Chocolates")
