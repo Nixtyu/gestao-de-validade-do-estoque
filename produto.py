@@ -101,7 +101,3 @@ for p in estoque_ordenado:
 
 # Aciona o Alerta Geral
 mostrar_vencimentos_criticos(estoque_ordenado)
-
-@echo off
-python "%userprofile%\OneDrive\Área de Trabalho\validade.py"
-pause
