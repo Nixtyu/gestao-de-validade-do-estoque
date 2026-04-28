@@ -70,34 +70,37 @@ estoque_mercearia = [
     Produto("Massa de bolo vilma festa", "04/06/2026", "Lote 2", "Mercearia"),
     Produto("Massa de bolo vilma leite condesado", "20/06/2026", "Lote Único", "Mercearia"),
     Produto("Massa de bolo vilma cenoura", "22/06/2026", "Lote Único", "Mercearia"),
+    Produto("Bis black xtra", "28/05/2026", "Lote único", "Mercearia"),
+    Produto("cheetos requeijao 35g", "18/05/2026", "Lote Único", "Mercearia"),
 ]
 
-# Ordenando o estoque por data (Lógica PVPS)
-estoque_ordenado = sorted(estoque_mercearia, key=lambda x: x.data_validade)
+# --- CONFIGURAÇÃO DE AUTOLIMPEZA ---
+DIAS_PARA_MANTER_VENCIDOS = 10  # Ele apaga itens que venceram há mais de um mês
 
-# --- FUNÇÃO DE ALERTA GERAL ---
-def mostrar_vencimentos_criticos(lista_produtos):
-    print("\n--- 🚨 ALERTA GERAL: VENCIMENTOS PRÓXIMOS (ATÉ 7 DIAS) ---")
-    encontrou_critico = False
-    
-    for p in lista_produtos:
-        prazo = p.dias_para_vencer()
-        if prazo <= 7:
-            status = "⚠️ CRÍTICO" if prazo <= 3 else "🟡 ATENÇÃO"
-            print(f"{status} | {p.nome} | Lote: {p.lote} | Vence em {prazo} dias")
-            encontrou_critico = True
-            
-    if not encontrou_critico:
-        print("Tudo sob controle! Nenhum produto vencendo nos próximos 7 dias.")
+hoje = datetime.now()
+
+# Nova lista filtrada: só mantém o que não venceu ou o que venceu recentemente
+estoque_limpo = [
+    p for p in estoque_mercearia 
+    if p.dias_para_vencer() > -DIAS_PARA_MANTER_VENCIDOS
+]
+
+# Ordenando a lista limpa
+estoque_ordenado = sorted(estoque_limpo, key=lambda x: x.data_validade)
 
 # --- EXECUÇÃO ---
 
-print("\n--- ROTEIRO COMPLETO DE REPOSIÇÃO (ORDEM DE VENCIMENTO) ---")
+print(f"\n--- ROTEIRO DE REPOSIÇÃO (Limpando itens vencidos há +{DIAS_PARA_MANTER_VENCIDOS} dias) ---")
 for p in estoque_ordenado:
     prazo = p.dias_para_vencer()
-    # Mostra tudo, mas sinaliza o que está perto
-    check = "🚩" if prazo <= 7 else "✅"
-    print(f"{check} {p.nome} (Lote: {p.lote}) | Faltam {prazo} dias")
+    if prazo < 0:
+        check = "❌ VENCIDO"
+    elif prazo <= 7:
+        check = "🚩 CRÍTICO"
+    else:
+        check = "✅ OK"
+    
+    print(f"{check} | {p.nome} | Faltam {prazo} dias")
 
 # Aciona o Alerta Geral
 mostrar_vencimentos_criticos(estoque_ordenado)
